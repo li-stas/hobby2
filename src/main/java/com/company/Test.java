@@ -29,7 +29,7 @@ public class Test {
         } catch (NoSuchElementException e) {
             System.out.println("Введенны не все значения");
         } finally {
-            //
+           //
         }
 
 

@@ -56,13 +56,13 @@ public class SkiHobby extends Hobby {
         super(nYearBirthday, nMonthBirthday, nDayBirthday );
         this.cSkiDifficulty = cSkiDifficulty;
     }
-    public SkiHobby(Scanner scan) throws InputMismatchException, NoSuchElementException {
+    public SkiHobby(Scanner scan) throws InputMismatchException, NoSuchElementException, ExceptionHobby {
         super((short) 0, (int) 0, (byte) 0 );
 
         String cLine = scan.nextLine();
         String[] aLine = cLine.split(" ");
         if (aLine.length != 4) {
-            throw new NoSuchElementException(); // количество элемнтов #4
+            throw new NoSuchElementException("количество элемнтов #4"); // количество элемнтов #4
         }
         short nYYYY;
         try {
@@ -85,23 +85,27 @@ public class SkiHobby extends Hobby {
         if (nYYYY != 0 & nMM != 0 & nDD != 0) {
             //
         } else {
-            throw new InputMismatchException();
+            throw new InputMismatchException("nYYYY != 0 & nMM != 0 & nDD != 0");
         }
         if ( !(nYYYY >= 2019 - 100 & (nMM >=1 & nMM <=12) & (nDD >=1 & nDD<=31))) {
-            throw new InputMismatchException();
+            throw new InputMismatchException("!(nYYYY >= 2019 - 100 & (nMM >=1 & nMM <=12) & (nDD >=1 & nDD<=31)))");
         }
         // sSkiDifficulty
         String sSkiDifficulty = aLine[3]; //4
         if ( sSkiDifficulty.length() != 1 ) {
-            throw new InputMismatchException();
+            throw new InputMismatchException("sSkiDifficulty.length() != 1");
         }
-        if (!(sSkiDifficulty.contains("L") || sSkiDifficulty.contains("S") || sSkiDifficulty.contains("E"))) { // вторго = M || F
-            throw new InputMismatchException();
+        //if (!(cSkiDifficulty.contains("L") || cSkiDifficulty.contains("S") || cSkiDifficulty.contains("E"))) { // вторго = M || F
+        //if (!(sSkiDifficulty.contains("LSE"))) { // вторго = M || F
+        if (!( "LSE".contains(sSkiDifficulty))) { // вторго = M || F
+            throw new ExceptionHobby("сложность_трасс[LSE]");
         }
+
         this.nMonthBirthday = nMM;
         this.nDayBirthday = nDD;
         this.nYearBirthday = nYYYY;
-        this.cSkiDifficulty = cSkiDifficulty;
+        this.cSkiDifficulty = sSkiDifficulty.charAt(0);
+        System.out.println("Введенные данные " + sSkiDifficulty + " "+this.cSkiDifficulty);
     }
 
     public String tellAboutHobby(){

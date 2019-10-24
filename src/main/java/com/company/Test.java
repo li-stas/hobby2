@@ -1,4 +1,5 @@
 package com.company;
+import com.company.hobby.ExceptionHobby;
 import com.company.hobby.FishHobby;
 import com.company.hobby.Hobby;
 import com.company.hobby.SkiHobby;
@@ -25,9 +26,13 @@ public class Test {
         try {
             man3 = new SkiHobby(scan);
         } catch (InputMismatchException e) {
-            System.out.println("Введенные данные не соответвуют требованиям");
+            System.out.println(e.getMessage());
+            //System.out.println("Введенные данные не соответвуют требованиям");
         } catch (NoSuchElementException e) {
-            System.out.println("Введенны не все значения");
+            //System.out.println("Введенны не все значения");
+            System.out.println(e.getMessage());
+        } catch (ExceptionHobby e) {
+            System.out.println(e.getMessage());
         } finally {
            //
         }

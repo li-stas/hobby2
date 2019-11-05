@@ -3,6 +3,7 @@ import com.company.hobby.ExceptionHobby;
 import com.company.hobby.FishHobby;
 import com.company.hobby.Hobby;
 import com.company.hobby.SkiHobby;
+import org.apache.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -11,6 +12,8 @@ import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) {
+        final Logger log = Logger.getLogger(Test.class);
+        log.info("Start!");
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите чз пробел  (год месяц день сложность_трасс[LSE] ) ГГГГ ММ ДД SkyDiff");
         /*
@@ -26,13 +29,17 @@ public class Test {
         try {
             man3 = new SkiHobby(scan);
         } catch (InputMismatchException e) {
+            // https://devcolibri.com/%D1%83%D1%87%D0%B8%D0%BC%D1%81%D1%8F-%D0%B2%D0%B2%D0%B5%D1%81%D1%82%D0%B8-%D0%BB%D0%BE%D0%B3%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-log4j/
             System.out.println(e.getMessage());
+            log.error("Это сообщение ошибки"+e.getMessage());
             //System.out.println("Введенные данные не соответвуют требованиям");
         } catch (NoSuchElementException e) {
             //System.out.println("Введенны не все значения");
             System.out.println(e.getMessage());
+            log.error("Это сообщение ошибки"+e.getMessage());
         } catch (ExceptionHobby e) {
             System.out.println(e.getMessage());
+            log.error("Это сообщение ошибки"+e.getMessage());
         } finally {
            //
         }
